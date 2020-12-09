@@ -1,0 +1,20 @@
+GET http://localhost:8080/credits
+
+###
+
+GET http://localhost:8080/credits/1
+
+###
+
+POST http://localhost:8080/credits
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "ipotekaref",
+  "sum": 250000011
+}
+
+###
+
+DELETE http://localhost:8080/credits/3

@@ -1,9 +1,7 @@
 package tech.itpark.creditsmanager.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tech.itpark.creditsmanager.manager.CreditManager;
 import tech.itpark.creditsmanager.model.Credit;
 
@@ -21,4 +19,18 @@ public class CreditController {
         return manager.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Credit getById(@PathVariable long id) {
+        return manager.getById(id);
+    }
+
+    @PostMapping
+    public Credit save(@RequestBody Credit item) {
+        return manager.save(item);
+    }
+
+    @DeleteMapping("/{id}")
+    public Credit removeById(@PathVariable long id) {
+        return manager.removeById(id);
+    }
 }

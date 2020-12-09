@@ -7,7 +7,6 @@ import java.util.Map;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Credit {
     @NonNull
     private long id;
@@ -15,7 +14,4 @@ public class Credit {
     private String name;
     @NonNull
     private long sum;
-    private Date openDate;
-    private int paymentDay;
-    private Map<String, Long> payments;
 }
