@@ -21,13 +21,13 @@ public class CreditManager {
 
     public List<Credit> getAll() {
         return template.query(
-                "SELECT id, name, sum FROM credits ORDER BY id LIMIT 50",
+                "SELECT id, name, sum, createddate FROM credits ORDER BY id LIMIT 50",
                 rowMapper);
     }
 
     public Credit getById(long id) {
         return template.queryForObject(
-                "SELECT id, name, sum FROM credits WHERE id = :id",
+                "SELECT id, name, sum, createddate FROM credits WHERE id = :id",
                 Map.of("id", id),
                 rowMapper);
     }
@@ -36,10 +36,11 @@ public class CreditManager {
         if (item.getId() == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             template.update(
-                    "INSERT INTO credits(name, sum) VALUES (:name, :sum)",
+                    "INSERT INTO credits(name, sum, createddate) VALUES (:name, :sum, :createddate)",
                     new MapSqlParameterSource(Map.of(
                             "name", item.getName(),
-                            "sum", item.getSum()
+                            "sum", item.getSum(),
+                            "createddate", item.getCreatedDate()
                     )),
                     keyHolder
             );
@@ -52,7 +53,8 @@ public class CreditManager {
                 Map.of(
                         "id", item.getId(),
                         "name", item.getName(),
-                        "sum", item.getSum()
+                        "sum", item.getSum(),
+                        "createddate", item.getCreatedDate()
                 )
         );
 
