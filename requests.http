@@ -4,3 +4,17 @@ https://creditsmanager.herokuapp.com/credits/1
 
 https://creditsmanager.herokuapp.com/credits
 
+###
+POST https://creditsmanager.herokuapp.com/credits/
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "remont",
+  "sum": 38637100,
+  "createdDate": "2020-11-15",
+  "payDay": 14,
+  "percent": 1240
+}
+
+

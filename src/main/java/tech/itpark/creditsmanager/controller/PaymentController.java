@@ -9,22 +9,21 @@ import tech.itpark.creditsmanager.model.Payment;
 import java.util.List;
 
 @RestController
-@RequestMapping("/credits/payments")
 @RequiredArgsConstructor
 public class PaymentController {
     private final PaymentManager manager;
 
-    @GetMapping()
+    @GetMapping("/credits/payments")
     public List<Payment> getAll(){
         return manager.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/credits/{id}/payments")
     public List<Payment> getAllByCredit(@PathVariable long id) {
         return manager.getByCreditId(id);
     }
 
-    @PostMapping
+    @PostMapping("/credits/payments/save")
     public Payment save(@RequestBody Payment item) {
         return manager.save(item);
     }

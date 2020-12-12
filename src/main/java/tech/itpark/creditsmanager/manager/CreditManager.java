@@ -36,12 +36,12 @@ public class CreditManager {
         if (item.getId() == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             template.update(
-                    "INSERT INTO credits(name, sum, createddate, payday, percent) VALUES (:name, :sum, :createddate, :payday, :percent)",
+                    "INSERT INTO credits(name, sum, createddate, payday, percent) VALUES (:name, :sum, :createdDate, :payDay, :percent)",
                     new MapSqlParameterSource(Map.of(
                             "name", item.getName(),
                             "sum", item.getSum(),
-                            "createddate", item.getCreatedDate(),
-                            "payday", item.getPayDay(),
+                            "createdDate", item.getCreatedDate(),
+                            "payDay", item.getPayDay(),
                             "percent", item.getPercent()
                     )),
                     keyHolder
@@ -56,8 +56,8 @@ public class CreditManager {
                         "id", item.getId(),
                         "name", item.getName(),
                         "sum", item.getSum(),
-                        "createddate", item.getCreatedDate(),
-                        "payday", item.getPayDay(),
+                        "createdDate", item.getCreatedDate(),
+                        "payDay", item.getPayDay(),
                         "percent", item.getPercent()
                 )
         );
