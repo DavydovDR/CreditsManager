@@ -10,11 +10,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Payment {
     @NonNull
-    private int id;
+    private Long id;
     private long paySum;
     private Date payDate;
     private long mainDebt;
     private boolean isMade;
     @NonNull
-    private long creditId;
+    private Long creditId;
 }

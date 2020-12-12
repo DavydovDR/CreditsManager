@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import tech.itpark.creditsmanager.manager.CreditManager;
 import tech.itpark.creditsmanager.model.Credit;
 
-
 import java.util.List;
 
 @RestController
