@@ -3,15 +3,16 @@ CREATE TABLE credits
     id          BIGINT PRIMARY KEY AUTO_INCREMENT,
     name        TEXT   NOT NULL,
     sum         BIGINT NOT NULL,
-    createddate DATE,
-    payday      INTEGER
+    createddate TEXT,
+    payday      INTEGER,
+    percent     INTEGER
 );
 
 CREATE TABLE payments
 (
     id       BIGINT PRIMARY KEY AUTO_INCREMENT,
     paysum   BIGINT,
-    paydate  DATE,
+    paydate  TEXT,
     maindebt BIGINT,
     ismade   BOOLEAN,
     creditid BIGINT REFERENCES credits

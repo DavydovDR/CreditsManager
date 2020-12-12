@@ -12,7 +12,7 @@ public class Payment {
     @NonNull
     private Long id;
     private long paySum;
-    private Date payDate;
+    private String payDate;
     private long mainDebt;
     private boolean isMade;
     @NonNull

@@ -12,7 +12,7 @@ public class PaymentRowMapper implements RowMapper<Payment> {
         return new Payment(
                 resultSet.getLong("id"),
                 resultSet.getLong("paySum"),
-                resultSet.getDate("payDate"),
+                resultSet.getString("payDate"),
                 resultSet.getLong("mainDebt"),
                 resultSet.getBoolean("isMade"),
                 resultSet.getLong("creditId")

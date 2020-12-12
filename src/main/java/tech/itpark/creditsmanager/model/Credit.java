@@ -15,6 +15,8 @@ public class Credit {
     private String name;
     @NonNull
     private Long sum;
-    private Date createdDate;
+    private String createdDate;
     private int payDay;
+    @NonNull
+    private Integer percent;
 }

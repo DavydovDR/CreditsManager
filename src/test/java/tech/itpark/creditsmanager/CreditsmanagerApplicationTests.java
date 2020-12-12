@@ -21,30 +21,30 @@ class CreditsmanagerApplicationTests {
         // getAll
         mockMvc.perform(get("/credits"))
                 .andExpect(content().string(
-                        "[{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28}," +
-                        "{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20}]"));
+                        "[{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920}," +
+                        "{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20,\"percent\":1420}]"));
 
         // getById
         mockMvc.perform(get("/credits/1"))
                 .andExpect(content().string(
-                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28}"));
+                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920}"));
 
         // delete
         mockMvc.perform(delete("/credits/1"))
                 .andExpect(content().string(
-                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28}"));
+                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920}"));
 
         mockMvc.perform(get("/credits"))
                 .andExpect(content().string(
-                        "[{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20}]"));
+                        "[{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20,\"percent\":1420}]"));
 
         // create
         mockMvc.perform(
                 post("/credits")
                         .contentType("application/json")
-                        .content( "{\"id\":0,\"name\":\"remont\",\"sum\":50000000,\"createdDate\":\"2019-11-11\",\"payDay\":13}")
+                        .content( "{\"id\":0,\"name\":\"remont\",\"sum\":50000000,\"createdDate\":\"2019-11-11\",\"payDay\":13,\"percent\":100}")
         ).andExpect(
-                content().string("{\"id\":3,\"name\":\"remont\",\"sum\":50000000,\"createdDate\":\"2019-11-11\",\"payDay\":13}")
+                content().string("{\"id\":3,\"name\":\"remont\",\"sum\":50000000,\"createdDate\":\"2019-11-11\",\"payDay\":13,\"percent\":100}")
         );
     }
 

@@ -50,7 +50,8 @@ public class PaymentManager {
                             "paysum", item.getPaySum(),
                             "paydate", item.getPayDate(),
                             "maindebt", item.getMainDebt(),
-                            "ismade", item.isMade()
+                            "ismade", item.isMade(),
+                            "creditid", item.getCreditId()
                     )),
                     keyHolder
             );
@@ -64,7 +65,8 @@ public class PaymentManager {
                         "paysum", item.getPaySum(),
                         "paydate", item.getPayDate(),
                         "maindebt", item.getMainDebt(),
-                        "ismade", item.isMade()
+                        "ismade", item.isMade(),
+                        "creditid", item.getCreditId()
                 )
         );
 
