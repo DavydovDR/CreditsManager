@@ -18,40 +18,100 @@ class CreditsmanagerApplicationTests {
 
     @Test
     void complexTest() throws Exception {
-        // getAll
-        mockMvc.perform(get("/credits"))
-                .andExpect(content().string(
-                        "[{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920,\"months\":180}," +
-                                "{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20,\"percent\":1420,\"months\":120}]"));
 
-        // getById
+        mockMvc.perform(get("/credits"))
+                .andExpect(content().json("""
+                        [{
+                             "id": 1,
+                             "name": "ipoteka",
+                             "sum": 240000000,
+                             "createdDate": "2018-01-01",
+                             "payDay": 28,
+                             "percent": 920,
+                             "months": 180
+                           },
+                           {
+                             "id": 2,
+                             "name": "avto",
+                             "sum": 100000000,
+                             "createdDate": "2020-10-10",
+                             "payDay": 20,
+                             "percent": 1420,
+                             "months": 120
+                           }]"""));
+
+
         mockMvc.perform(get("/credits/1"))
-                .andExpect(content().string(
-                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920,\"months\":180}"));
+                .andExpect(content().json("""
+                        {
+                          "id": 1,
+                          "name": "ipoteka",
+                          "sum": 240000000,
+                          "createdDate": "2018-01-01",
+                          "payDay": 28,
+                          "percent": 920,
+                          "months": 180
+                        }"""));
 
-        // delete
+
         mockMvc.perform(delete("/credits/1"))
-                .andExpect(content().string(
-                        "{\"id\":1,\"name\":\"ipoteka\",\"sum\":240000000,\"createdDate\":\"2018-01-01\",\"payDay\":28,\"percent\":920,\"months\":180}"));
+                .andExpect(content().json("""
+                        {
+                          "id": 1,
+                          "name": "ipoteka",
+                          "sum": 240000000,
+                          "createdDate": "2018-01-01",
+                          "payDay": 28,
+                          "percent": 920,
+                          "months": 180
+                        }"""));
 
         mockMvc.perform(get("/credits"))
-                .andExpect(content().string(
-                        "[{\"id\":2,\"name\":\"avto\",\"sum\":100000000,\"createdDate\":\"2020-10-10\",\"payDay\":20,\"percent\":1420,\"months\":120}]"));
+                .andExpect(content().json("""
+                        [
+                           {
+                             "id": 2,
+                             "name": "avto",
+                             "sum": 100000000,
+                             "createdDate": "2020-10-10",
+                             "payDay": 20,
+                             "percent": 1420,
+                             "months": 120
+                           }
+                        ]"""));
 
-        // create
-        mockMvc.perform(
-                post("/credits")
-                        .contentType("application/json")
-                        .content("{\"id\":0,\"name\":\"remont\",\"sum\":38637100,\"createdDate\":\"2020-11-15\",\"payDay\":14,\"percent\":1240,\"months\":48}")
-        ).andExpect(
-                content().string("{\"id\":3,\"name\":\"remont\",\"sum\":38637100,\"createdDate\":\"2020-11-15\",\"payDay\":14,\"percent\":1240,\"months\":48}")
-        );
+
+        mockMvc.perform(post("/credits")
+                .contentType("application/json")
+                .content("{\"id\":0,\"name\":\"Кредит на ремонт\",\"sum\":38637100,\"createdDate\":\"2020-11-15\",\"payDay\":14,\"percent\":124,\"months\":48}"))
+                .andExpect(content().json("""
+                        {
+                          "id": 3,
+                          "name": "Кредит на ремонт",
+                          "sum": 38637100,
+                          "createdDate": "2020-11-15",
+                          "payDay": 14,
+                          "percent": 124,
+                          "months": 48
+                        }"""));
 
         mockMvc.perform(get("/credits/payments"))
-                .andExpect(
-                content().string("[{\"id\":1,\"paySum\":500000,\"payDate\":\"2020-01-01\",\"mainDebt\":250000,\"creditId\":2}," +
-                        "{\"id\":2,\"paySum\":500000,\"payDate\":\"2020-02-01\",\"mainDebt\":250000,\"creditId\":2}]")
-        );
+                .andExpect(content().json("""
+                          [
+                          {
+                            "id": 1,
+                            "paySum": 500000,
+                            "payDate": "2020-01-01",
+                            "mainDebt": 250000,
+                            "creditId": 2
+                          },
+                          {
+                            "id": 2,
+                            "paySum": 500000,
+                            "payDate": "2020-02-01",
+                            "mainDebt": 250000,
+                            "creditId": 2
+                          }
+                        ]"""));
     }
-
 }

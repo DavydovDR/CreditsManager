@@ -1,29 +1,22 @@
 package tech.itpark.creditsmanager.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import tech.itpark.creditsmanager.manager.CreditManager;
-import tech.itpark.creditsmanager.manager.PaymentManager;
-import tech.itpark.creditsmanager.model.Credit;
+import org.springframework.stereotype.Component;
 import tech.itpark.creditsmanager.model.Payment;
 
-import javax.accessibility.AccessibleRelation;
 import java.time.LocalDate;
 import java.time.Year;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class CreditService {
+    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    public static List<Payment> getPaymentsByTerm(long sum, int months, int yearPercent, String createdDate, int payDay) {
+    public List<Payment> getPaymentsByTerm(long sum, int months, int yearPercent, String createdDate, int payDay) {
 
         List<Payment> result = new ArrayList<>();
 
@@ -41,9 +34,8 @@ public class CreditService {
         result.add(firstPayment);
 
         for (int i = 1; i < months; i++) {
-            var previousDate = LocalDate.parse(result.get(i - 1).getPayDate(), dtf);
-
             var payment = new Payment();
+            var previousDate = LocalDate.parse(result.get(i - 1).getPayDate(), dtf);
 
             if (previousDate.getMonthValue() == 12) {
                 payment.setPayDate(LocalDate.of(
@@ -77,21 +69,21 @@ public class CreditService {
         return result;
     }
 
-    private static long getMonthPaymentByTerm(int yearPercent, long sum, int months) {
+    private long getMonthPaymentByTerm(int yearPercent, long sum, int months) {
         double monthPercent = yearPercent * 1.0 / 12000;
         double temp = Math.pow((1 + monthPercent), months);
         double annuityCoef = monthPercent * temp / (temp - 1);
         return (long) Math.ceil(annuityCoef * sum);
     }
 
-    private static LocalDate getFirstPayDate(String createdDate, int payDay) {
+    private LocalDate getFirstPayDate(String createdDate, int payDay) {
         LocalDate ldCreatedDate = LocalDate.parse(createdDate, dtf);
         return LocalDate.of(ldCreatedDate.getYear(),
                 ldCreatedDate.getMonthValue() + 1,
                 payDay);
     }
 
-    private static long getPercentPayment(int yearPercent, long debt, String previousDateStr, String nextDateStr) {
+    private long getPercentPayment(int yearPercent, long debt, String previousDateStr, String nextDateStr) {
         LocalDate previousDate = LocalDate.parse(previousDateStr, dtf);
         LocalDate nextDate = LocalDate.parse(nextDateStr, dtf);
 
@@ -104,6 +96,4 @@ public class CreditService {
                 previousDate.until(nextDate, ChronoUnit.DAYS) /
                 Year.of(previousDate.getYear()).length()/ 1000);
     }
-
-
 }

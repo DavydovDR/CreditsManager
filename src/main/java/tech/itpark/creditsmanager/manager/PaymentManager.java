@@ -6,13 +6,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import tech.itpark.creditsmanager.mapper.CreditRowMapper;
 import tech.itpark.creditsmanager.mapper.PaymentRowMapper;
-import tech.itpark.creditsmanager.model.Credit;
 import tech.itpark.creditsmanager.model.Payment;
 import tech.itpark.creditsmanager.service.CreditService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,6 +17,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class PaymentManager {
+    private final CreditService service;
     private final NamedParameterJdbcTemplate template;
     private final PaymentRowMapper rowMapper = new PaymentRowMapper();
 
@@ -91,7 +89,7 @@ public class PaymentManager {
         var payDay = template.queryForObject("SELECT payday FROM credits WHERE id = :id",
                 Map.of("id", creditId),
                 Integer.class);
-        return CreditService.getPaymentsByTerm(sum, months, yearPercent, createdDate, payDay).
+        return service.getPaymentsByTerm(sum, months, yearPercent, createdDate, payDay).
                 stream().
                 peek(p -> p.setCreditId(creditId)).peek(p -> p.setId((long) 0)).
                 collect(Collectors.toList());
