@@ -94,4 +94,8 @@ public class PaymentManager {
                 peek(p -> p.setCreditId(creditId)).peek(p -> p.setId((long) 0)).
                 collect(Collectors.toList());
     }
+
+    public List<Payment> saveAllForCredit(List<Payment> items) {
+        return items.stream().peek(p -> save(p)).collect(Collectors.toList());
+    }
 }

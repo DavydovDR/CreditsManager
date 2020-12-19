@@ -28,6 +28,11 @@ public class PaymentController {
         return manager.save(item);
     }
 
+    @PostMapping("/credits/{id}/payments")
+    public List<Payment> saveAllForCredit(@RequestBody List<Payment> items) {
+        return manager.saveAllForCredit(items);
+    }
+
     @GetMapping("/credits/{id}/payments/getSchedule")
     public List<Payment> getShedule(@PathVariable long id) {
         return manager.getScheduleForTermByCreditId(id);
