@@ -23,8 +23,13 @@ public class PaymentController {
         return manager.getByCreditId(id);
     }
 
-    @PostMapping("/credits/payments/save")
+    @PostMapping("/credits/payments/")
     public Payment save(@RequestBody Payment item) {
         return manager.save(item);
+    }
+
+    @GetMapping("/credits/{id}/payments/getSchedule")
+    public List<Payment> getShedule(@PathVariable long id) {
+        return manager.getScheduleForTermByCreditId(id);
     }
 }

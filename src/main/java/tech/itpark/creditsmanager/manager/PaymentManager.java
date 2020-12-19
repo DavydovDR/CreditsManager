@@ -6,12 +6,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import tech.itpark.creditsmanager.mapper.CreditRowMapper;
 import tech.itpark.creditsmanager.mapper.PaymentRowMapper;
 import tech.itpark.creditsmanager.model.Credit;
 import tech.itpark.creditsmanager.model.Payment;
+import tech.itpark.creditsmanager.service.CreditService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -21,37 +25,34 @@ public class PaymentManager {
 
     public Payment getById(long id) {
         return template.queryForObject(
-                "SELECT id, paysum, paydate, maindebt, ismade, creditid FROM payments WHERE id = :id",
+                "SELECT id, paysum, paydate, maindebt, creditid FROM payments WHERE id = :id",
                 Map.of("id", id),
                 rowMapper);
     }
 
     public List<Payment> getAll() {
         return template.query(
-                "SELECT id, paysum, paydate, maindebt, ismade, creditid " +
+                "SELECT id, paysum, paydate, maindebt, creditid " +
                         "FROM payments ORDER BY paydate",
                 rowMapper);
     }
 
     public List<Payment> getByCreditId(long creditId) {
-        return template.query(
-                "SELECT id, paysum, paydate, maindebt, ismade, creditid " +
-                "FROM payments WHERE creditid = :creditid ORDER BY paydate",
-                Map.of("creditid", creditId),
-                rowMapper);
+        return template.query("SELECT id, paysum, paydate, mainDebt, creditId " +
+                "FROM payments WHERE creditId = :creditId",
+                Map.of("creditId", creditId), rowMapper);
     }
 
     public Payment save(Payment item) {
         if (item.getId() == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             template.update(
-                    "INSERT INTO payments(paysum, paydate, maindebt, ismade, creditid) VALUES (:paysum, :paydate, :maindebt, :ismade, :creditid)",
+                    "INSERT INTO payments(paysum, paydate, maindebt, creditid) VALUES (:paySum, :payDate, :mainDebt, :creditId)",
                     new MapSqlParameterSource(Map.of(
-                            "paysum", item.getPaySum(),
-                            "paydate", item.getPayDate(),
-                            "maindebt", item.getMainDebt(),
-                            "ismade", item.isMade(),
-                            "creditid", item.getCreditId()
+                            "paySum", item.getPaySum(),
+                            "payDate", item.getPayDate(),
+                            "mainDebt", item.getMainDebt(),
+                            "creditId", item.getCreditId()
                     )),
                     keyHolder
             );
@@ -60,16 +61,39 @@ public class PaymentManager {
         }
 
         template.update(
-                "UPDATE payments SET paysum = :paysum, paydate = :paydate, maindebt = :maindebt, ismade = :ismade, creditid = :creditid WHERE id = :id",
+                "UPDATE payments SET paysum = :paySum, paydate = :payDate, maindebt = :mainDebt, creditid = :creditId WHERE id = :id",
                 Map.of(
-                        "paysum", item.getPaySum(),
-                        "paydate", item.getPayDate(),
-                        "maindebt", item.getMainDebt(),
-                        "ismade", item.isMade(),
-                        "creditid", item.getCreditId()
+                        "paySum", item.getPaySum(),
+                        "payDate", item.getPayDate(),
+                        "mainDebt", item.getMainDebt(),
+                        "creditId", item.getCreditId()
                 )
         );
 
         return getById(item.getId());
+    }
+
+    public List<Payment> getScheduleForTermByCreditId(long creditId) {
+
+        var id = creditId;
+        var yearPercent = template.queryForObject("SELECT percent FROM credits WHERE id = :id",
+                Map.of("id", creditId),
+                Integer.class);
+        var sum = template.queryForObject("SELECT sum FROM credits WHERE id = :id",
+                Map.of("id", creditId),
+                Long.class);
+        var months = template.queryForObject("SELECT months FROM credits WHERE id = :id",
+                Map.of("id", creditId),
+                Integer.class);
+        var createdDate = template.queryForObject("SELECT createddate FROM credits WHERE id = :id",
+                Map.of("id", creditId),
+                String.class);
+        var payDay = template.queryForObject("SELECT payday FROM credits WHERE id = :id",
+                Map.of("id", creditId),
+                Integer.class);
+        return CreditService.getPaymentsByTerm(sum, months, yearPercent, createdDate, payDay).
+                stream().
+                peek(p -> p.setCreditId(creditId)).peek(p -> p.setId((long) 0)).
+                collect(Collectors.toList());
     }
 }

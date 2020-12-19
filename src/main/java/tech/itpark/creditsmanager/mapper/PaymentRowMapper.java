@@ -14,7 +14,6 @@ public class PaymentRowMapper implements RowMapper<Payment> {
                 resultSet.getLong("paySum"),
                 resultSet.getString("payDate"),
                 resultSet.getLong("mainDebt"),
-                resultSet.getBoolean("isMade"),
                 resultSet.getLong("creditId")
         );
     }

@@ -21,13 +21,13 @@ public class CreditManager {
 
     public List<Credit> getAll() {
         return template.query(
-                "SELECT id, name, sum, createddate, payday, percent FROM credits ORDER BY id LIMIT 50",
+                "SELECT id, name, sum, createddate, payday, percent, months FROM credits ORDER BY id LIMIT 50",
                 rowMapper);
     }
 
     public Credit getById(long id) {
         return template.queryForObject(
-                "SELECT id, name, sum, createddate, payday, percent FROM credits WHERE id = :id",
+                "SELECT id, name, sum, createddate, payday, percent, months FROM credits WHERE id = :id",
                 Map.of("id", id),
                 rowMapper);
     }
@@ -36,13 +36,14 @@ public class CreditManager {
         if (item.getId() == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             template.update(
-                    "INSERT INTO credits(name, sum, createddate, payday, percent) VALUES (:name, :sum, :createdDate, :payDay, :percent)",
+                    "INSERT INTO credits(name, sum, createddate, payday, percent, months) VALUES (:name, :sum, :createdDate, :payDay, :percent, :months)",
                     new MapSqlParameterSource(Map.of(
                             "name", item.getName(),
                             "sum", item.getSum(),
                             "createdDate", item.getCreatedDate(),
                             "payDay", item.getPayDay(),
-                            "percent", item.getPercent()
+                            "percent", item.getPercent(),
+                            "months", item.getMonths()
                     )),
                     keyHolder
             );
@@ -51,14 +52,17 @@ public class CreditManager {
         }
 
         template.update(
-                "UPDATE credits SET name = :name, sum = :sum WHERE id = :id",
+                "UPDATE credits SET name = :name, sum = :sum, createddate = :createdDate, " +
+                        "payday = :payDay, percent = :percent, months = :months " +
+                        "WHERE id = :id",
                 Map.of(
                         "id", item.getId(),
                         "name", item.getName(),
                         "sum", item.getSum(),
                         "createdDate", item.getCreatedDate(),
                         "payDay", item.getPayDay(),
-                        "percent", item.getPercent()
+                        "percent", item.getPercent(),
+                        "months", item.getMonths()
                 )
         );
 
@@ -67,12 +71,10 @@ public class CreditManager {
 
     public Credit removeById(long id) {
         Credit item = getById(id);
-
         template.update(
                 "DELETE FROM credits WHERE id = :id",
                 Map.of("id", item.getId())
         );
-
         return item;
     }
 }

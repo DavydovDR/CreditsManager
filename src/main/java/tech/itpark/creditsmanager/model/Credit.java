@@ -19,4 +19,5 @@ public class Credit {
     private int payDay;
     @NonNull
     private Integer percent;
+    private Integer months;
 }

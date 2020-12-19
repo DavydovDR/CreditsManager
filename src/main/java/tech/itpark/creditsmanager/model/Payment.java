@@ -14,7 +14,5 @@ public class Payment {
     private long paySum;
     private String payDate;
     private long mainDebt;
-    private boolean isMade;
-    @NonNull
     private Long creditId;
 }

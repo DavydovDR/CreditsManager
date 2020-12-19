@@ -1,20 +1,35 @@
-GET http://localhost:8080/credits
-
-###
-
-GET http://localhost:8080/credits/1
-
-###
-
 POST http://localhost:8080/credits
-Content-Type: application/json
+Content-Type:  application/json
 
 {
   "id": 0,
-  "name": "ipotekaref",
-  "sum": 250000011
+  "name": "Кредит на ремонт",
+  "sum": 38637100,
+  "createdDate": "2020-11-15",
+  "payDay": 14,
+  "percent": 124,
+  "months": 48
 }
 
 ###
 
-DELETE http://localhost:8080/credits/3
+GET http://localhost:8080/credits/3/payments/getSchedule
+
+###
+
+POST http://localhost:8080/credits
+Content-Type:  application/json
+
+{
+  "id": 0,
+  "name": "Ипотека",
+  "sum": 233000000,
+  "createdDate": "2018-09-14",
+  "payDay": 14,
+  "percent": 92,
+  "months": 180
+}
+
+###
+
+GET http://localhost:8080/credits/4/payments/getSchedule

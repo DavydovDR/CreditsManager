@@ -5,7 +5,8 @@ CREATE TABLE credits
     sum         BIGINT NOT NULL,
     createddate TEXT,
     payday      INTEGER,
-    percent     INTEGER
+    percent     INTEGER,
+    months      INTEGER
 );
 
 CREATE TABLE payments
@@ -14,6 +15,5 @@ CREATE TABLE payments
     paysum   BIGINT,
     paydate  TEXT,
     maindebt BIGINT,
-    ismade   BOOLEAN,
     creditid BIGINT REFERENCES credits
 );

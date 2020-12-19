@@ -16,7 +16,8 @@ public class CreditRowMapper implements RowMapper<Credit> {
                 resultSet.getLong("sum"),
                 resultSet.getString("createdDate"),
                 resultSet.getInt("payDay"),
-                resultSet.getInt("percent")
+                resultSet.getInt("percent"),
+                resultSet.getInt("months")
         );
     }
 }
