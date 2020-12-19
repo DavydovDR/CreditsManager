@@ -89,7 +89,7 @@ public class PaymentManager {
         var payDay = template.queryForObject("SELECT payday FROM credits WHERE id = :id",
                 Map.of("id", creditId),
                 Integer.class);
-        return service.getPaymentsByTerm(sum, months, yearPercent, createdDate, payDay).
+        return service.getPaymentsSchedule(sum, months, yearPercent, createdDate, payDay).
                 stream().
                 peek(p -> p.setCreditId(creditId)).peek(p -> p.setId((long) 0)).
                 collect(Collectors.toList());

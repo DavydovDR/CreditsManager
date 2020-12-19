@@ -16,7 +16,7 @@ import java.util.List;
 public class CreditService {
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public List<Payment> getPaymentsByTerm(long sum, int months, int yearPercent, String createdDate, int payDay) {
+    public List<Payment> getPaymentsSchedule(long sum, int months, int yearPercent, String createdDate, int payDay) {
 
         List<Payment> result = new ArrayList<>();
 
@@ -69,21 +69,21 @@ public class CreditService {
         return result;
     }
 
-    private long getMonthPaymentByTerm(int yearPercent, long sum, int months) {
+    public long getMonthPaymentByTerm(int yearPercent, long sum, int months) {
         double monthPercent = yearPercent * 1.0 / 12000;
         double temp = Math.pow((1 + monthPercent), months);
         double annuityCoef = monthPercent * temp / (temp - 1);
         return (long) Math.ceil(annuityCoef * sum);
     }
 
-    private LocalDate getFirstPayDate(String createdDate, int payDay) {
+    public LocalDate getFirstPayDate(String createdDate, int payDay) {
         LocalDate ldCreatedDate = LocalDate.parse(createdDate, dtf);
         return LocalDate.of(ldCreatedDate.getYear(),
                 ldCreatedDate.getMonthValue() + 1,
                 payDay);
     }
 
-    private long getPercentPayment(int yearPercent, long debt, String previousDateStr, String nextDateStr) {
+    public long getPercentPayment(int yearPercent, long debt, String previousDateStr, String nextDateStr) {
         LocalDate previousDate = LocalDate.parse(previousDateStr, dtf);
         LocalDate nextDate = LocalDate.parse(nextDateStr, dtf);
 

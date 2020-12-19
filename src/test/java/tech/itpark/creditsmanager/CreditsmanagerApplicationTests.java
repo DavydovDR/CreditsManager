@@ -83,7 +83,16 @@ class CreditsmanagerApplicationTests {
 
         mockMvc.perform(post("/credits")
                 .contentType("application/json")
-                .content("{\"id\":0,\"name\":\"Кредит на ремонт\",\"sum\":38637100,\"createdDate\":\"2020-11-15\",\"payDay\":14,\"percent\":124,\"months\":48}"))
+                .content("""
+                        {
+                          "id": 0,
+                          "name": "Кредит на ремонт",
+                          "sum": 38637100,
+                          "createdDate": "2020-11-15",
+                          "payDay": 14,
+                          "percent": 124,
+                          "months": 48
+                        }"""))
                 .andExpect(content().json("""
                         {
                           "id": 3,
