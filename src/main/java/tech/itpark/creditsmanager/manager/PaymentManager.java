@@ -96,6 +96,14 @@ public class PaymentManager {
     }
 
     public List<Payment> saveAllForCredit(List<Payment> items) {
-        return items.stream().peek(p -> save(p)).collect(Collectors.toList());
+        return items.stream().peek(this::save).collect(Collectors.toList());
+    }
+
+    public Long getAmountOfPercents(long id) {
+        var paymentAmount = getByCreditId(id).stream().mapToLong(p -> p.getPaySum()).sum();
+        var mainDebt = template.queryForObject("SELECT sum FROM credits WHERE id = :id",
+                Map.of("id", id),
+                Long.class);
+        return paymentAmount - mainDebt;
     }
 }

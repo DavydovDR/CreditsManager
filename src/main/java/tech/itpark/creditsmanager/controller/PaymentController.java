@@ -37,4 +37,9 @@ public class PaymentController {
     public List<Payment> getShedule(@PathVariable long id) {
         return manager.getScheduleForTermByCreditId(id);
     }
+
+    @GetMapping("/credits/{id}/getAllPercents")
+    public Long getAmountOfPercents(@PathVariable long id) {
+        return manager.getAmountOfPercents(id);
+    }
 }

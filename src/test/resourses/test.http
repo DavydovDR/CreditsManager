@@ -49,3 +49,123 @@ Content-Type:  application/json
 ###
 
 GET http://localhost:8080/credits/4/payments/getSchedule
+
+####
+
+POST http://localhost:8080/credits/
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Айфон",
+  "sum": 10000000,
+  "createdDate": "2020-01-01",
+  "payDay": 1,
+  "percent": 100,
+  "months": 12
+}
+
+###
+
+GET http://localhost:8080/credits/3/payments/getSchedule
+
+###
+
+POST http://localhost:8080/credits/3/payments/
+Content-Type: application/json
+
+[
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-02-01",
+    "mainDebt": 502963,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-03-01",
+    "mainDebt": 597460,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-04-01",
+    "mainDebt": 596168,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-05-01",
+    "mainDebt": 669350,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-06-01",
+    "mainDebt": 703357,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-07-01",
+    "mainDebt": 781867,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-08-01",
+    "mainDebt": 829155,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-09-01",
+    "mainDebt": 899384,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-10-01",
+    "mainDebt": 987638,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-11-01",
+    "mainDebt": 1059213,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1349958,
+    "payDate": "2020-12-01",
+    "mainDebt": 1155413,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1317871,
+    "payDate": "2021-01-01",
+    "mainDebt": 1218032,
+    "creditId": 3
+  }
+]
+
+###
+
+GET http://localhost:8080/credits/3/payments
+
+###
+
+GET http://localhost:8080/credits/3/getAllPercents
+
