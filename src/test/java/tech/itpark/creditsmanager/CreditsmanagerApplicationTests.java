@@ -27,7 +27,7 @@ class CreditsmanagerApplicationTests {
                              "sum": 240000000,
                              "createdDate": "2018-01-01",
                              "payDay": 28,
-                             "percent": 920,
+                             "percent": 92,
                              "months": 180
                            },
                            {
@@ -36,7 +36,7 @@ class CreditsmanagerApplicationTests {
                              "sum": 100000000,
                              "createdDate": "2020-10-10",
                              "payDay": 20,
-                             "percent": 1420,
+                             "percent": 142,
                              "months": 120
                            }]"""));
 
@@ -49,7 +49,7 @@ class CreditsmanagerApplicationTests {
                           "sum": 240000000,
                           "createdDate": "2018-01-01",
                           "payDay": 28,
-                          "percent": 920,
+                          "percent": 92,
                           "months": 180
                         }"""));
 
@@ -62,7 +62,7 @@ class CreditsmanagerApplicationTests {
                           "sum": 240000000,
                           "createdDate": "2018-01-01",
                           "payDay": 28,
-                          "percent": 920,
+                          "percent": 92,
                           "months": 180
                         }"""));
 
@@ -75,7 +75,7 @@ class CreditsmanagerApplicationTests {
                              "sum": 100000000,
                              "createdDate": "2020-10-10",
                              "payDay": 20,
-                             "percent": 1420,
+                             "percent": 142,
                              "months": 120
                            }
                         ]"""));
