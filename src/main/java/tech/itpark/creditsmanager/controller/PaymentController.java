@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tech.itpark.creditsmanager.manager.PaymentManager;
 import tech.itpark.creditsmanager.model.Payment;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class PaymentController {
     }
 
     @GetMapping("/credits/{id}/payments")
-    public List<Payment> getAllByCredit(@PathVariable long id) {
+    public List<Payment> getAllByCredit(@PathVariable int id) {
         return manager.getByCreditId(id);
     }
 
@@ -34,12 +35,12 @@ public class PaymentController {
     }
 
     @GetMapping("/credits/{id}/payments/getSchedule")
-    public List<Payment> getShedule(@PathVariable long id) {
+    public List<Payment> getShedule(@PathVariable int id) {
         return manager.getScheduleForTermByCreditId(id);
     }
 
     @GetMapping("/credits/{id}/getAllPercents")
-    public Long getAmountOfPercents(@PathVariable long id) {
+    public BigDecimal getAmountOfPercents(@PathVariable int id) {
         return manager.getAmountOfPercents(id);
     }
 }

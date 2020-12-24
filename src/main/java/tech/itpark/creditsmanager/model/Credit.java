@@ -4,20 +4,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 public class Credit {
     @NonNull
-    private Long id;
+    private int id;
     @NonNull
     private String name;
     @NonNull
-    private Long sum;
-    private String createdDate;
+    private BigDecimal initialDebt;
+    @NonNull
+    private BigDecimal debt;
+    @NonNull
+    private Date createdDate;
+    @NonNull
     private int payDay;
     @NonNull
-    private Integer percent;
-    private Integer months;
+    private BigDecimal percent;
+    @NonNull
+    private int initialTerm;
+    @NonNull
+    private int term;
+    @NonNull
+    private boolean withoutFirstPayment;
 }

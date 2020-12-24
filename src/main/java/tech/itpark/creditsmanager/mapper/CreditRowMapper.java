@@ -11,13 +11,16 @@ public class CreditRowMapper implements RowMapper<Credit> {
     @Override
     public Credit mapRow(ResultSet resultSet, int i) throws SQLException {
         return new Credit(
-                resultSet.getLong("id"),
+                resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getLong("sum"),
-                resultSet.getString("createdDate"),
-                resultSet.getInt("payDay"),
-                resultSet.getInt("percent"),
-                resultSet.getInt("months")
+                resultSet.getBigDecimal("initial_debt"),
+                resultSet.getBigDecimal("debt"),
+                resultSet.getDate("created_date"),
+                resultSet.getInt("pay_day"),
+                resultSet.getBigDecimal("percent"),
+                resultSet.getInt("initial_term"),
+                resultSet.getInt("term"),
+                resultSet.getBoolean("firstPayment")
         );
     }
 }

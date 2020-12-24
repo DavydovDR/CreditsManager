@@ -2,17 +2,21 @@ package tech.itpark.creditsmanager.model;
 
 import lombok.*;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 public class Payment {
     @NonNull
-    private Long id;
-    private long paySum;
-    private String payDate;
-    private long mainDebt;
-    private Long creditId;
+    private int id;
+    @NonNull
+    private BigDecimal amount;
+    @NonNull
+    private Date payDate;
+    @NonNull
+    private BigDecimal mainDebt;
+    @NonNull
+    private int creditId;
 }

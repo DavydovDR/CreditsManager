@@ -19,7 +19,7 @@ public class CreditController {
     }
 
     @GetMapping("/{id}")
-    public Credit getById(@PathVariable long id) {
+    public Credit getById(@PathVariable int id) {
         return manager.getById(id);
     }
 
@@ -29,7 +29,7 @@ public class CreditController {
     }
 
     @DeleteMapping("/{id}")
-    public Credit removeById(@PathVariable long id) {
+    public Credit removeById(@PathVariable int id) {
         return manager.removeById(id);
     }
 }

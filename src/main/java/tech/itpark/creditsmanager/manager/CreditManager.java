@@ -21,13 +21,13 @@ public class CreditManager {
 
     public List<Credit> getAll() {
         return template.query(
-                "SELECT id, name, sum, createddate, payday, percent, months FROM credits ORDER BY id LIMIT 50",
+                "SELECT id, name, initial_debt, debt, created_date, pay_day, percent, initial_term, term, first_payment FROM credits ORDER BY id",
                 rowMapper);
     }
 
-    public Credit getById(long id) {
+    public Credit getById(int id) {
         return template.queryForObject(
-                "SELECT id, name, sum, createddate, payday, percent, months FROM credits WHERE id = :id",
+                "SELECT id, name, initial_debt, debt, created_date, pay_day, percent, initial_term, term, first_payment FROM credits WHERE id = :id",
                 Map.of("id", id),
                 rowMapper);
     }
@@ -35,41 +35,46 @@ public class CreditManager {
     public Credit save(Credit item) {
         if (item.getId() == 0) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            template.update(
-                    "INSERT INTO credits(name, sum, createddate, payday, percent, months) VALUES (:name, :sum, :createdDate, :payDay, :percent, :months)",
-                    new MapSqlParameterSource(Map.of(
-                            "name", item.getName(),
-                            "sum", item.getSum(),
-                            "createdDate", item.getCreatedDate(),
-                            "payDay", item.getPayDay(),
-                            "percent", item.getPercent(),
-                            "months", item.getMonths()
-                    )),
-                    keyHolder
+            template.update("""
+                            INSERT INTO credits(name, initial_debt, debt, created_date, pay_day, percent, initial_term, term, first_payment)
+                            VALUES (:name, :initial_debt, :debt, :created_date, :pay_day, :percent, :initial_term, :term, :first_payment)""",
+                    new MapSqlParameterSource(
+                            Map.of("name", item.getName(),
+                                    "initial_debt", item.getInitialDebt(),
+                                    "debt", item.getDebt(),
+                                    "created_date", item.getCreatedDate(),
+                                    "pay_day", item.getPayDay(),
+                                    "percent", item.getPercent(),
+                                    "initial_term", item.getInitialTerm(),
+                                    "term", item.getTerm(),
+                                    "first_payment", item.isWithoutFirstPayment()
+                            )
+                    ), keyHolder
             );
-            long id = keyHolder.getKey().longValue();
+            int id = keyHolder.getKey().intValue();
             return getById(id);
         }
 
-        template.update(
-                "UPDATE credits SET name = :name, sum = :sum, createddate = :createdDate, " +
-                        "payday = :payDay, percent = :percent, months = :months " +
-                        "WHERE id = :id",
+        template.update("""
+                        UPDATE credits SET name =:name, initial_debt =:initial_debt, debt =:debt, created_date =:created_date,
+                        pay_day =:pay_day, percent =:percent, initial_term =:initial_term, term =:term, first_payment =:first_payment
+                        WHERE id = :id""",
                 Map.of(
-                        "id", item.getId(),
                         "name", item.getName(),
-                        "sum", item.getSum(),
-                        "createdDate", item.getCreatedDate(),
-                        "payDay", item.getPayDay(),
+                        "initial_debt", item.getInitialDebt(),
+                        "debt", item.getDebt(),
+                        "created_date", item.getCreatedDate(),
+                        "pay_day", item.getPayDay(),
                         "percent", item.getPercent(),
-                        "months", item.getMonths()
+                        "initial_term", item.getInitialTerm(),
+                        "term", item.getTerm(),
+                        "first_payment", item.isWithoutFirstPayment()
                 )
         );
-
         return getById(item.getId());
     }
 
-    public Credit removeById(long id) {
+    public Credit removeById(int id) {
         Credit item = getById(id);
         template.update(
                 "DELETE FROM credits WHERE id = :id",

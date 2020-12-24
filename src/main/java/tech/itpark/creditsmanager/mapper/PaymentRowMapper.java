@@ -10,11 +10,11 @@ public class PaymentRowMapper implements RowMapper<Payment> {
     @Override
     public Payment mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         return new Payment(
-                resultSet.getLong("id"),
-                resultSet.getLong("paySum"),
-                resultSet.getString("payDate"),
-                resultSet.getLong("mainDebt"),
-                resultSet.getLong("creditId")
+                resultSet.getInt("id"),
+                resultSet.getBigDecimal("amount"),
+                resultSet.getDate("pay_date"),
+                resultSet.getBigDecimal("main_debt"),
+                resultSet.getInt("credit_id")
         );
     }
 }
