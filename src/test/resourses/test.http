@@ -1,19 +1,29 @@
+GET http://creditsmanager.herokuapp.com/credits
+
+###
+
+GET http://creditsmanager.herokuapp.com/credits/1
 GET http://localhost:8080/credits
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/1/payments/getSchedule
 GET http://localhost:8080/credits/1
 
 ###
 
+
+GET http://creditsmanager.herokuapp.com/credits/payments
 GET http://localhost:8080/credits/payments
 
 ###
 
+DELETE http://creditsmanager.herokuapp.com/credits/1/
 DELETE http://localhost:8080/credits/1/
 
 ###
 
+POST http://creditsmanager.herokuapp.com/credits
 POST http://localhost:8080/credits
 Content-Type:  application/json
 
@@ -29,10 +39,12 @@ Content-Type:  application/json
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/3/payments/getSchedule
 GET http://localhost:8080/credits/3/payments/getSchedule
 
 ###
 
+POST http://creditsmanager.herokuapp.com/credits
 POST http://localhost:8080/credits
 Content-Type:  application/json
 
@@ -48,10 +60,12 @@ Content-Type:  application/json
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/4/payments/getSchedule
 GET http://localhost:8080/credits/4/payments/getSchedule
 
 ####
 
+POST http://creditsmanager.herokuapp.com/credits/
 POST http://localhost:8080/credits/
 Content-Type: application/json
 
@@ -67,16 +81,245 @@ Content-Type: application/json
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/3/payments/getSchedule
 GET http://localhost:8080/credits/3/payments/getSchedule
 
 ###
 
+POST http://creditsmanager.herokuapp.com/credits/3/payments/
 POST http://localhost:8080/credits/3/payments/
 Content-Type: application/json
 
 [
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2020-12-14",
+    "mainDebt": 645453,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-01-14",
+    "mainDebt": 638464,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-02-14",
+    "mainDebt": 631682,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-03-14",
+    "mainDebt": 675761,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-04-14",
+    "mainDebt": 645452,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-05-14",
+    "mainDebt": 664276,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-06-14",
+    "mainDebt": 659245,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-07-14",
+    "mainDebt": 677765,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-08-14",
+    "mainDebt": 673326,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-09-14",
+    "mainDebt": 680417,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-10-14",
+    "mainDebt": 698469,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-11-14",
+    "mainDebt": 694939,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2021-12-14",
+    "mainDebt": 712671,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-01-14",
+    "mainDebt": 719933,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-02-14",
+    "mainDebt": 717345,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-03-14",
+    "mainDebt": 753948,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-04-14",
+    "mainDebt": 732840,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-05-14",
+    "mainDebt": 749735,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-06-14",
+    "mainDebt": 748453,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-07-14",
+    "mainDebt": 765005,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-08-14",
+    "mainDebt": 764392,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-09-14",
+    "mainDebt": 772443,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-10-14",
+    "mainDebt": 788464,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-11-14",
+    "mainDebt": 788881,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2022-12-14",
+    "mainDebt": 804540,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-01-14",
+    "mainDebt": 812740,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-02-14",
+    "mainDebt": 814222,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-03-14",
+    "mainDebt": 842371,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-04-14",
+    "mainDebt": 831668,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-05-14",
+    "mainDebt": 846383,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-06-14",
+    "mainDebt": 849341,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-07-14",
+    "mainDebt": 863666,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-08-14",
+    "mainDebt": 867381,
     "paySum": 1349958,
     "payDate": "2020-02-01",
     "mainDebt": 502963,
@@ -84,6 +327,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-09-14",
+    "mainDebt": 876516,
     "paySum": 1349958,
     "payDate": "2020-03-01",
     "mainDebt": 597460,
@@ -91,6 +337,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-10-14",
+    "mainDebt": 890241,
     "paySum": 1349958,
     "payDate": "2020-04-01",
     "mainDebt": 596168,
@@ -98,6 +347,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-11-14",
+    "mainDebt": 895123,
     "paySum": 1349958,
     "payDate": "2020-05-01",
     "mainDebt": 669350,
@@ -105,6 +357,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2023-12-14",
+    "mainDebt": 908437,
     "paySum": 1349958,
     "payDate": "2020-06-01",
     "mainDebt": 703357,
@@ -112,6 +367,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-01-14",
+    "mainDebt": 917823,
     "paySum": 1349958,
     "payDate": "2020-07-01",
     "mainDebt": 781867,
@@ -119,6 +377,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-02-14",
+    "mainDebt": 924060,
     "paySum": 1349958,
     "payDate": "2020-08-01",
     "mainDebt": 829155,
@@ -126,6 +387,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-03-14",
+    "mainDebt": 939655,
     "paySum": 1349958,
     "payDate": "2020-09-01",
     "mainDebt": 899384,
@@ -133,6 +397,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-04-14",
+    "mainDebt": 943634,
     "paySum": 1349958,
     "payDate": "2020-10-01",
     "mainDebt": 987638,
@@ -140,6 +407,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-05-14",
+    "mainDebt": 955852,
     "paySum": 1349958,
     "payDate": "2020-11-01",
     "mainDebt": 1059213,
@@ -147,6 +417,9 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-06-14",
+    "mainDebt": 963584,
     "paySum": 1349958,
     "payDate": "2020-12-01",
     "mainDebt": 1155413,
@@ -154,6 +427,37 @@ Content-Type: application/json
   },
   {
     "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-07-14",
+    "mainDebt": 975361,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-08-14",
+    "mainDebt": 983948,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-09-14",
+    "mainDebt": 994282,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 1025068,
+    "payDate": "2024-10-14",
+    "mainDebt": 1005381,
+    "creditId": 3
+  },
+  {
+    "id": 0,
+    "paySum": 941316,
+    "payDate": "2024-11-14",
+    "mainDebt": 931532,
     "paySum": 1317871,
     "payDate": "2021-01-01",
     "mainDebt": 1218032,
@@ -163,9 +467,11 @@ Content-Type: application/json
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/3/payments
 GET http://localhost:8080/credits/3/payments
 
 ###
 
+GET http://creditsmanager.herokuapp.com/credits/3/getAllPercents
 GET http://localhost:8080/credits/3/getAllPercents
 
